@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/_layout.html}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo admin Page</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<section class="section">
+			<div class="row" id="table-hover-row">
+				<div class="col-12">
+					<div class="card">
+						<!--  <div class="card-header">
+                      <h4 class="card-title">Hoverable rows</h4>
+                    </div> -->
+						<div class="card-content">
+							<div class="card-body">
+								<div th:if="${message!=null}" class="alert alert-primary">
+									<i>[[${message}]]</i>
+								</div>
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<a th:href="@{/admin/product/add}" class="btn btn-primary">Add</a>
+									</div>
+									<form class="col-md-6 mb-1"
+										th:action="@{/admin/product/search}">
+										<div class="input-group mb-3">
+											<span class="input-group-text" id="basic-addon1"> <svg
+													xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="2" stroke-linecap="round"
+													stroke-linejoin="round" class="feather feather-search">
+													<circle cx="11" cy="11" r="8"></circle>
+													<line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+											</span> <input type="text" class="form-control"
+												style="margin-right: 20px;" name="keyword" id="keyword"
+												placeholder="Nhập từ khóa">
+											<button class="btn btn-outline-secondary" type="submit"
+												id="button-addon2">Button</button>
+										</div>
+									</form>
+								</div>
+
+							</div>
+							<!-- table hover -->
+							<div class="table-responsive">
+								<table class="table table-hover mb-0">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>Image</th>
+											<th>Name</th>
+											<th>Price</th>
+											<th>Publisher</th>
+											<th>Author</th>
+											<th>Category</th>
+											<th>Status</th>
+											<th>ACTION</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="p : ${products}">
+											<td scope="row">[[${p.id}]]</td>
+											<td></td>
+											<td class="text-bold-500" th:text="${p.name}"></td>
+											<td class="text-bold-500" th:text="${p.price}"></td>
+											<td class="text-bold-500" th:text="${p.publisher}"></td>
+											<td class="text-bold-500" th:text="${p.author}"></td>
+											<td class="text-bold-500" th:text="${p.category.name}"></td>
+											<td class="text-bold-500" th:text="${p.status}"></td>
+											<td><a
+												th:href="@{'/admin/product/edit/'+${p.id}}"
+												class="btn btn-outline-warning">Edit</a> <a
+												th:href="@{'/admin/product/delete/'+${p.id}}"
+												class="btn btn-outline-danger">Delete</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination pagination-primary  justify-content-end">
+						<li class="page-item disabled"><a class="page-link" href="#"
+							tabindex="-1" aria-disabled="true">Previous</a></li>
+						<li class="page-item active"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

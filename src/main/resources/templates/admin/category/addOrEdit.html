@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/_layout.html}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo admin Page</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<section id="multiple-column-form">
+			<div class="row match-height">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-content">
+							<div class="card-body">
+								<form class="form" th:action="@{/admin/category/saveOrUpdate}"
+									method="post" th:object="${category}">
+									<div class="row">
+										<input type="hidden" th:field="*{isEdit}">
+										<input type="hidden" th:field="*{id}">
+										
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="name">Tên thể loại sách:</label> <input
+													type="text" id="name" class="form-control"
+													th:field="*{name}" placeholder="Nhập thể loại sách"
+													name="name">
+											</div>
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label for="status">Trạng thái</label> 
+													<select class="form-select" id="status" name="status" th:field="*{status}">
+														<option value="0">Active</option>
+														<option value="1">Hide</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-12 d-flex justify-content-end">
+											<button type="submit" class="btn btn-primary me-1 mb-1">
+											<span th:if="${category.isEdit}">Cập nhật</span>
+											<span th:unless="${category.isEdit}">Lưu</span>
+											</button>
+											
+											<a th:href="@{/admin/category}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

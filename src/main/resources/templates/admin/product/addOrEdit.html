@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/_layout.html}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo admin Page</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<section id="multiple-column-form">
+			<div class="row match-height">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-content">
+							<div class="card-body">
+								<form class="form" th:action="@{/admin/product/saveOrUpdate}"
+									method="post" th:object="${product}"
+									enctype="multipart/form-data">
+									<input type="hidden" th:field="*{isEdit}"> <input th:if="${product.isEdit}"
+										type="hidden" th:field="*{id}">
+									<div class="row">
+										<div class="col-md-8 col-12">
+											<div class="form-group">
+												<label for="name">Tên sách:</label> <input type="text"
+													id="name" class="form-control" th:field="*{name}"
+													placeholder="Nhập tên sách" name="name">
+											</div>
+											<div class="form-group">
+												<label for="publisher">Nhà xuất bản:</label> <input
+													type="text" id="name" class="form-control"
+													th:field="*{publisher}" placeholder="Nhập nhà xuất bản"
+													name="publisher">
+											</div>
+											<div class="form-group">
+												<label for="publisher">Tên tác giả:</label> <input
+													type="text" id="name" class="form-control"
+													th:field="*{author}" placeholder="Nhập nhà xuất bản"
+													name="author">
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="publisherYear">Năm xuất bản:</label> <input
+														type="number" id="publisherYear" class="form-control"
+														th:field="*{publisherYear}"
+														placeholder="Nhập thể loại sách" name="publisherYear">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="quantity">Số lượng:</label> <input
+														type="number" id="quantity" class="form-control"
+														th:field="*{quantity}" placeholder="Nhập thể loại sách"
+														name="quantity">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="category_id">Thể loại sách</label> <select
+													class="form-select" id="category_id" name="category_id"
+													th:field="*{category_id}">
+													<option th:each="item : ${categories}"
+														th:value="${item.id}" th:text="${item.name}"
+														th:selected="${item.id == product.category_id}">Active</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-4 col-12">
+											<script>
+												function chooseFile(fileInput) {
+													if (fileInput.files && fileInput.files[0]) {
+														var reader = new FileReader();
+														reader.onload = function() {
+															var output = document.getElementById('image');
+															output.src = reader.result;
+														}
+														reader.readAsDataURL(fileInput.files[0]);
+													}
+												}
+											</script>
+											<img alt="" style="height: 320px;"
+												th:src="${product.image!=null?'/admin/product/images/'+product.image : '/admin/product/images/noimage.svg'}"
+												class="img-fluid" id="image">
+											<div class="form-group mt-2">
+												<label for="imageFile">Ảnh đại diện:</label> 
+												<input
+													type="file" class="form-file-input" id="imageFile"
+													name="imageFile" onchange="chooseFile(this)">
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="price">Giá sách:</label> <input type="number"
+														id="price" class="form-control" th:field="*{price}"
+														placeholder="Nhập thể loại sách" name="price">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="discount">Giảm giá:</label> <input
+														type="number" id="discount" class="form-control"
+														th:field="*{discount}" placeholder="Nhập thể loại sách"
+														name="discount">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="status">Trạng thái</label> <select
+														class="form-select" id="status" name="status"
+														th:field="*{status}">
+														<option value="0">Active</option>
+														<option value="1">Hide</option>
+													</select>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-12">
+											<div class="form-group mb-3">
+												<label for="description" class="form-label">Mô tả
+													sản phẩm:</label>
+												<textarea class="form-control" id="description"
+													th:field="*{description}" rows="3"></textarea>
+											</div>
+										</div>
+										<div class="col-12 d-flex justify-content-end">
+											<button type="submit" class="btn btn-primary me-1 mb-1">
+												<span th:if="${product.isEdit}">Cập nhật</span> <span
+													th:unless="${product.isEdit}">Lưu</span>
+											</button>
+											<a th:href="@{/admin/category}"
+												class="btn btn-light-secondary me-1 mb-1">Back</a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

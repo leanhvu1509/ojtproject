@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+    </head>
+    <body>
+        <div th:fragment="sidebar">
+            <div id="sidebar" class='active'>
+                <div class="sidebar-wrapper active">
+                    <div class="sidebar-header">
+                        <img th:src="@{/admin/assets/images/logo.png}" alt="" srcset="">
+                    </div>
+                    <div class="sidebar-menu">
+                        <ul class="menu">
+                            <li class='sidebar-title'>Main</li>
+                            <li class="sidebar-item active ">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i data-feather="home" width="20"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item  has-sub">
+                                <a href="#" class='sidebar-link'>
+                                    <i data-feather="triangle" width="20"></i>
+                                    <span>Sản phẩm</span>
+                                </a>
+                                <ul class="submenu ">
+                                    <li>
+                                        <a href="component-alert.html">Danh mục</a>
+                                    </li>
+                                    <li>
+                                        <a href="component-badge.html">Sách</a>
+                                    </li>
+                                     <li>
+                                        <a href="component-badge.html">Đánh giá</a>
+                                    </li>
+                                     <li>
+                                        <a href="component-badge.html">Bình Luận</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-item  has-sub">
+                                <a href="#" class='sidebar-link'>
+                                    <i data-feather="briefcase" width="20"></i>
+                                    <span>Đối tác</span>
+                                </a>
+                                <ul class="submenu ">
+                                    <li>
+                                        <a href="component-extra-avatar.html">Khách hàng</a>
+                                    </li>
+                                    <li>
+                                        <a href="component-extra-divider.html">Nhà cung cấp</a>
+                                    </li>
+                                    <li>
+                                        <a href="component-extra-divider.html">Liên hệ</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-item  ">
+                                <a href="form-editor.html" class='sidebar-link'>
+                                    <i data-feather="layers" width="20"></i>
+                                    <span>Đơn hàng</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item  ">
+                                <a href="form-editor.html" class='sidebar-link'>
+                                    <i data-feather="layers" width="20"></i>
+                                    <span>Hệ thống</span>
+                                </a>
+                            </li>
+                            <li class='sidebar-title'>System</li>
+                            <li class="sidebar-item  has-sub">
+                                <a href="#" class='sidebar-link'>
+                                    <i data-feather="file-text" width="20"></i>
+                                    <span>Trang tĩnh</span>
+                                </a>
+                                <ul class="submenu ">
+                                    <li>
+                                        <a href="form-element-input.html">Slide</a>
+                                    </li>
+                                    <li>
+                                        <a href="form-element-input-group.html">Sự kiện</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-item  ">
+                                <a href="form-layout.html" class='sidebar-link'>
+                                    <i data-feather="layout" width="20"></i>
+                                    <span>Thành viên</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item  ">
+                                <a href="form-editor.html" class='sidebar-link'>
+                                    <i data-feather="layers" width="20"></i>
+                                    <span>Thống kê</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
