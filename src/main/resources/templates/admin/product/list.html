@@ -51,7 +51,7 @@
 									<thead>
 										<tr>
 											<th>Id</th>
-											<th>Image</th>
+											
 											<th>Name</th>
 											<th>Price</th>
 											<th>Publisher</th>
@@ -64,7 +64,7 @@
 									<tbody>
 										<tr th:each="p : ${products}">
 											<td scope="row">[[${p.id}]]</td>
-											<td></td>
+								
 											<td class="text-bold-500" th:text="${p.name}"></td>
 											<td class="text-bold-500" th:text="${p.price}"></td>
 											<td class="text-bold-500" th:text="${p.publisher}"></td>

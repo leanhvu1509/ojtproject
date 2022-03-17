@@ -23,10 +23,10 @@
 								</div>
 								<div class="row">
 									<div class="col-md-6 mb-3">
-										<a th:href="@{/admin/category/add}" class="btn btn-primary">Add</a>
+										<a th:href="@{/admin/user/add}" class="btn btn-primary">Add</a>
 									</div>
 									<form class="col-md-6 mb-1"
-										th:action="@{/admin/category/search}">
+										th:action="@{/admin/user/search}">
 										<div class="input-group mb-3">
 											<span class="input-group-text" id="basic-addon1"> <svg
 													xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -52,21 +52,23 @@
 										<tr>
 											<th>Id</th>
 											<th>Name</th>
+											<th>Email</th>
+											<th>Phone</th>
 											<th>Status</th>
 											<th>ACTION</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="category : ${categories}">
-											<td scope="row">[[${category.id}]]</td>
-											<td class="text-bold-500" th:text="${category.name}"></td>
-											<td class="text-bold-500" th:text="${category.status}"></td>
+										<tr th:each="u : ${users}">
+											<td scope="row">[[${u.id}]]</td>
+											<td class="text-bold-500" th:text="${u.fullname}"></td>
+											<td class="text-bold-500" th:text="${u.email}"></td>
+											<td class="text-bold-500" th:text="${u.phone}"></td>
+											<td class="text-bold-500" th:text="${u.status}"></td>
 											<td><a
-												th:href="@{'/admin/category/edit/'+${category.id}}"
-												class="btn btn-outline-warning">Edit</a> 
-												<a th:data-id="${category.id}"
-													th:data-name="${category.name}"
-												onclick="showConfirmModalDialog(this.getAttribute('data-id'),this.getAttribute('data-name'))"
+												th:href="@{'/admin/user/edit/'+${u.id}}"
+												class="btn btn-outline-warning">Edit</a> <a
+												th:href="@{'/admin/user/delete/'+${u.id}}"
 												class="btn btn-outline-danger">Delete</a></td>
 										</tr>
 									</tbody>
@@ -89,35 +91,6 @@
 					</ul>
 				</nav>
 			</div>
-			<script>
-				function showConfirmModalDialog(id,name){
-					$('#name').text(name);
-					$('#yesOption').attr('href','/admin/category/delete/'+id)
-					$('#confirmId').modal('show');
-				}
-			</script>
-			<!-- Modal -->
-			<div class="modal fade" id="confirmId" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">Do you want to delete <span id="name"></span></div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Close</button>
-							<a type="button" id="yesOption" class="btn btn-primary">Yes</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- End model  -->
 		</section>
 	</div>
 </body>
